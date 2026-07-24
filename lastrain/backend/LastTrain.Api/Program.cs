@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
-    opt.UseSqlite("Data Source=lastrain.db"));
-builder.Services.AddScoped<RoutingService>();
+var dbPath = Environment.GetEnvironmentVariable("DB_PATH") ?? "lastrain.db";
+builder.Services.AddDbContext<AppDbContext>(opt =>
+    opt.UseSqlite($"Data Source={dbPath}"));builder.Services.AddScoped<RoutingService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(o => o.AddDefaultPolicy(p =>
@@ -80,5 +81,8 @@ app.MapGet("/api/plan", async (string from, string to, RoutingService routing) =
     var result = await routing.PlanLastTrainAsync(from, to);
     return Results.Ok(result);
 });
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://0.0.0.0:{port}");
 
 app.Run();
