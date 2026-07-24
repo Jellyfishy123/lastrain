@@ -4,13 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Railway (and most container hosts) tell the app which port to listen on
-// via the PORT environment variable. Bind to it when present; otherwise use
-// the local default so `dotnet run` still works on your machine.
-var port = Environment.GetEnvironmentVariable("PORT");
-if (!string.IsNullOrEmpty(port))
-    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
-
 var dbPath = Environment.GetEnvironmentVariable("DB_PATH") ?? "lastrain.db";
 builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseSqlite($"Data Source={dbPath}"));
