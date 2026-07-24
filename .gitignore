@@ -1,0 +1,5 @@
+backend/LastTrain.Api/bin/
+backend/LastTrain.Api/obj/
+backend/LastTrain.Api/*.db
+build/
+.dart_tool/
