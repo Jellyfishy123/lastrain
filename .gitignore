@@ -1,5 +1,13 @@
-backend/LastTrain.Api/bin/
-backend/LastTrain.Api/obj/
-backend/LastTrain.Api/*.db
+# .NET backend build output
+lastrain/backend/LastTrain.Api/bin/
+lastrain/backend/LastTrain.Api/obj/
+lastrain/backend/LastTrain.Api/*.db
+
+# Android signing secrets — NEVER commit these
+lastrain/android/key.properties
+*.jks
+*.keystore
+
+# Flutter / Dart build output (also covered by lastrain/.gitignore)
 build/
 .dart_tool/

@@ -2,10 +2,15 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-// Point this at your running ASP.NET Core API. `dotnet run` in
-// backend/LastTrain.Api defaults to https://localhost:7xxx or
-// http://localhost:5xxx — check the console output on first run.
-const String apiBaseUrl = 'http://localhost:5000';
+// API base URL. For local development it defaults to http://localhost:5000.
+// For release/store builds, override it at build time with your Railway URL:
+//   flutter build appbundle --dart-define=API_BASE_URL=https://your-app.up.railway.app
+//   flutter build ipa       --dart-define=API_BASE_URL=https://your-app.up.railway.app
+// (Store builds MUST use the https Railway URL — a phone can't reach localhost.)
+const String apiBaseUrl = String.fromEnvironment(
+  'API_BASE_URL',
+  defaultValue: 'http://localhost:5000',
+);
 
 void main() => runApp(const LastTrainApp());
 

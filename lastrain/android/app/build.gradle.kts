@@ -20,8 +20,9 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.hello"
+        // Unique Application ID for the Play Store. Change to your own reverse-domain
+        // (e.g. com.yourname.lasttrain) before you publish if you own a domain.
+        applicationId = "com.lasttrainhome.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
